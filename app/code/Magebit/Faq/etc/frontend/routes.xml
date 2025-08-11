@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category Magebit
+ * @package Magebit_Faq
+ * @author Magebit Team
+ * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="faq" frontName="faq">
+            <module name="Magebit_Faq"/>
+        </route>
+    </router>
+</config>
