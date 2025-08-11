@@ -1,0 +1,8 @@
+{
+    "name": "magebit/theme-learning",
+    "description": "Magebit Learning Theme",
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "license": ["OSL-3.0", "AFL-3.0"],
+    "require": {}
+} 
