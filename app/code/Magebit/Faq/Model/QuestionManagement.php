@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model;
 
 use Magento\Framework\Exception\LocalizedException;
@@ -19,16 +21,11 @@ use Magebit\Faq\Api\QuestionRepositoryInterface;
 class QuestionManagement implements QuestionManagementInterface
 {
     /**
-     * @var QuestionRepositoryInterface
-     */
-    protected $questionRepository;
-
-    /**
      * @param QuestionRepositoryInterface $questionRepository
      */
-    public function __construct(QuestionRepositoryInterface $questionRepository)
-    {
-        $this->questionRepository = $questionRepository;
+    public function __construct(
+        private readonly QuestionRepositoryInterface $questionRepository
+    ) {
     }
 
     /**
@@ -38,7 +35,7 @@ class QuestionManagement implements QuestionManagementInterface
      * @return bool
      * @throws LocalizedException
      */
-    public function enableQuestion($questionId)
+    public function enableQuestion(int $questionId): bool
     {
         try {
             $question = $this->questionRepository->get($questionId);
@@ -57,7 +54,7 @@ class QuestionManagement implements QuestionManagementInterface
      * @return bool
      * @throws LocalizedException
      */
-    public function disableQuestion($questionId)
+    public function disableQuestion(int $questionId): bool
     {
         try {
             $question = $this->questionRepository->get($questionId);

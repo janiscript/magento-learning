@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model\ResourceModel\Question;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
@@ -43,7 +45,7 @@ class Collection extends AbstractCollection
      *
      * @return void
      */
-    protected function _construct()
+    protected function _construct(): void
     {
         $this->_init(Question::class, QuestionResource::class);
     }

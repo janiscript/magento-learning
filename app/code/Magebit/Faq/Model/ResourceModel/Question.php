@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
@@ -20,7 +22,7 @@ class Question extends AbstractDb
      *
      * @return void
      */
-    protected function _construct()
+    protected function _construct(): void
     {
         $this->_init('magebit_faq_question', 'id');
     }

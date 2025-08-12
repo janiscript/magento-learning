@@ -5,6 +5,7 @@
  * @author Magebit Team
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
+declare(strict_types=1);
 
 namespace Magebit\Faq\Model\Question;
 
@@ -23,11 +24,6 @@ class DataProvider extends AbstractDataProvider
     protected $collection;
 
     /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
-
-    /**
      * @var array
      */
     protected $loadedData;
@@ -42,16 +38,15 @@ class DataProvider extends AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         CollectionFactory $questionCollectionFactory,
-        DataPersistorInterface $dataPersistor,
+        private readonly DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = []
     ) {
         $this->collection = $questionCollectionFactory->create();
-        $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
@@ -60,7 +55,7 @@ class DataProvider extends AbstractDataProvider
      *
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;

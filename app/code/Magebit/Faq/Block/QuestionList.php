@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -21,21 +23,6 @@ use Magebit\Faq\Api\Data\QuestionInterface;
 class QuestionList extends Template
 {
     /**
-     * @var QuestionRepositoryInterface
-     */
-    protected $questionRepository;
-
-    /**
-     * @var SearchCriteriaBuilder
-     */
-    protected $searchCriteriaBuilder;
-
-    /**
-     * @var SortOrderBuilder
-     */
-    protected $sortOrderBuilder;
-
-    /**
      * @param Context $context
      * @param QuestionRepositoryInterface $questionRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
@@ -44,15 +31,12 @@ class QuestionList extends Template
      */
     public function __construct(
         Context $context,
-        QuestionRepositoryInterface $questionRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        SortOrderBuilder $sortOrderBuilder,
+        private readonly QuestionRepositoryInterface $questionRepository,
+        private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
+        private readonly SortOrderBuilder $sortOrderBuilder,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->questionRepository = $questionRepository;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->sortOrderBuilder = $sortOrderBuilder;
     }
 
     /**
@@ -60,7 +44,7 @@ class QuestionList extends Template
      *
      * @return QuestionInterface[]
      */
-    public function getQuestions()
+    public function getQuestions(): array
     {
         $sortOrder = $this->sortOrderBuilder
             ->setField('position')
@@ -83,7 +67,7 @@ class QuestionList extends Template
      * @param QuestionInterface $question
      * @return string
      */
-    public function getAccordionId(QuestionInterface $question)
+    public function getAccordionId(QuestionInterface $question): string
     {
         return 'faq-question-' . $question->getId();
     }

@@ -22,7 +22,7 @@ interface QuestionManagementInterface
      * @return bool
      * @throws LocalizedException
      */
-    public function enableQuestion($questionId);
+    public function enableQuestion(int $questionId): bool;
 
     /**
      * Disable question
@@ -31,5 +31,5 @@ interface QuestionManagementInterface
      * @return bool
      * @throws LocalizedException
      */
-    public function disableQuestion($questionId);
+    public function disableQuestion(int $questionId): bool;
 }

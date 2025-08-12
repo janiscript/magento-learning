@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model;
 
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
@@ -26,30 +28,7 @@ use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory as QuestionCollec
  */
 class QuestionRepository implements QuestionRepositoryInterface
 {
-    /**
-     * @var QuestionResource
-     */
-    protected $resource;
 
-    /**
-     * @var QuestionInterfaceFactory
-     */
-    protected $questionFactory;
-
-    /**
-     * @var QuestionCollectionFactory
-     */
-    protected $questionCollectionFactory;
-
-    /**
-     * @var QuestionSearchResultsInterfaceFactory
-     */
-    protected $searchResultsFactory;
-
-    /**
-     * @var CollectionProcessorInterface
-     */
-    private $collectionProcessor;
 
     /**
      * @param QuestionResource $resource
@@ -59,17 +38,12 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
-        QuestionResource $resource,
-        QuestionInterfaceFactory $questionFactory,
-        QuestionCollectionFactory $questionCollectionFactory,
-        QuestionSearchResultsInterfaceFactory $searchResultsFactory,
-        CollectionProcessorInterface $collectionProcessor
+        private readonly QuestionResource $resource,
+        private readonly QuestionInterfaceFactory $questionFactory,
+        private readonly QuestionCollectionFactory $questionCollectionFactory,
+        private readonly QuestionSearchResultsInterfaceFactory $searchResultsFactory,
+        private readonly CollectionProcessorInterface $collectionProcessor
     ) {
-        $this->resource = $resource;
-        $this->questionFactory = $questionFactory;
-        $this->questionCollectionFactory = $questionCollectionFactory;
-        $this->searchResultsFactory = $searchResultsFactory;
-        $this->collectionProcessor = $collectionProcessor;
     }
 
     /**
@@ -79,7 +53,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @return QuestionInterface
      * @throws CouldNotSaveException
      */
-    public function save(QuestionInterface $question)
+    public function save(QuestionInterface $question): QuestionInterface
     {
         try {
             $this->resource->save($question);
@@ -96,7 +70,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @return QuestionInterface
      * @throws NoSuchEntityException
      */
-    public function get($questionId)
+    public function get(int $questionId): QuestionInterface
     {
         $question = $this->questionFactory->create();
         $this->resource->load($question, $questionId);
@@ -112,7 +86,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @param SearchCriteriaInterface $searchCriteria
      * @return QuestionSearchResultsInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria)
+    public function getList(SearchCriteriaInterface $searchCriteria): QuestionSearchResultsInterface
     {
         $collection = $this->questionCollectionFactory->create();
 
@@ -138,7 +112,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @return bool
      * @throws CouldNotDeleteException
      */
-    public function delete(QuestionInterface $question)
+    public function delete(QuestionInterface $question): bool
     {
         try {
             $this->resource->delete($question);
@@ -156,7 +130,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @throws CouldNotDeleteException
      * @throws NoSuchEntityException
      */
-    public function deleteById($questionId)
+    public function deleteById(int $questionId): bool
     {
         return $this->delete($this->get($questionId));
     }

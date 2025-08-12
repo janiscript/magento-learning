@@ -6,6 +6,8 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model\Question\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
@@ -21,7 +23,7 @@ class Status implements OptionSourceInterface
      *
      * @return array
      */
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         return [
             ['value' => QuestionInterface::STATUS_ENABLED, 'label' => __('Enabled')],
@@ -34,7 +36,7 @@ class Status implements OptionSourceInterface
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             QuestionInterface::STATUS_ENABLED => __('Enabled'),

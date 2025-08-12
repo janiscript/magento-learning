@@ -6,11 +6,14 @@
  * @copyright Copyright (c) 2024 Magebit (https://magebit.com/)
  */
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Index;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\View\Result\Page;
 
 /**
  * FAQ frontend controller
@@ -18,16 +21,11 @@ use Magento\Framework\View\Result\PageFactory;
 class Index implements HttpGetActionInterface
 {
     /**
-     * @var PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
      * @param PageFactory $resultPageFactory
      */
-    public function __construct(PageFactory $resultPageFactory)
-    {
-        $this->resultPageFactory = $resultPageFactory;
+    public function __construct(
+        private readonly PageFactory $resultPageFactory
+    ) {
     }
 
     /**
@@ -35,7 +33,7 @@ class Index implements HttpGetActionInterface
      *
      * @return \Magento\Framework\View\Result\Page
      */
-    public function execute()
+    public function execute(): Page
     {
         /** @var \Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();

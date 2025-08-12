@@ -26,7 +26,7 @@ interface QuestionRepositoryInterface
      * @return QuestionInterface
      * @throws LocalizedException
      */
-    public function save(QuestionInterface $question);
+    public function save(QuestionInterface $question): QuestionInterface;
 
     /**
      * Get question by ID
@@ -35,7 +35,7 @@ interface QuestionRepositoryInterface
      * @return QuestionInterface
      * @throws NoSuchEntityException
      */
-    public function get($questionId);
+    public function get(int $questionId): QuestionInterface;
 
     /**
      * Get questions matching the specified criteria
@@ -43,7 +43,7 @@ interface QuestionRepositoryInterface
      * @param SearchCriteriaInterface $searchCriteria
      * @return QuestionSearchResultsInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria);
+    public function getList(SearchCriteriaInterface $searchCriteria): QuestionSearchResultsInterface;
 
     /**
      * Delete question
@@ -52,7 +52,7 @@ interface QuestionRepositoryInterface
      * @return bool
      * @throws LocalizedException
      */
-    public function delete(QuestionInterface $question);
+    public function delete(QuestionInterface $question): bool;
 
     /**
      * Delete question by ID
@@ -62,5 +62,5 @@ interface QuestionRepositoryInterface
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function deleteById($questionId);
+    public function deleteById(int $questionId): bool;
 }

@@ -50,7 +50,7 @@ interface QuestionInterface
      * @param string $question
      * @return QuestionInterface
      */
-    public function setQuestion($question);
+    public function setQuestion(string $question): QuestionInterface;
 
     /**
      * Get answer
@@ -65,7 +65,7 @@ interface QuestionInterface
      * @param string $answer
      * @return QuestionInterface
      */
-    public function setAnswer($answer);
+    public function setAnswer(string $answer): QuestionInterface;
 
     /**
      * Get status
@@ -80,7 +80,7 @@ interface QuestionInterface
      * @param int $status
      * @return QuestionInterface
      */
-    public function setStatus($status);
+    public function setStatus(int $status): QuestionInterface;
 
     /**
      * Get position
@@ -95,7 +95,7 @@ interface QuestionInterface
      * @param int $position
      * @return QuestionInterface
      */
-    public function setPosition($position);
+    public function setPosition(int $position): QuestionInterface;
 
     /**
      * Get updated at
