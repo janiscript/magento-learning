@@ -7,7 +7,5 @@
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
     <title>Hyva Custom Theme</title>
     <parent>Hyva/default</parent>
-    <media>
-        <preview_image>media/preview.jpg</preview_image>
-    </media>
+
 </theme>
