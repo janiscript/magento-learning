@@ -1,0 +1,10 @@
+{
+    "name": "custom/theme-hyvacustom",
+    "description": "Custom Hyva Theme",
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "license": ["OSL-3.0", "AFL-3.0"],
+    "require": {
+        "hyva-themes/magento2-default-theme": "*"
+    }
+}

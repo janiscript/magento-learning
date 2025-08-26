@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom Hyva Theme - inherits most configuration from parent Hyva/default
+ */
+-->
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <!-- Custom configurations can be added here when needed -->
+    <!-- Most image sizes and configurations are inherited from Hyva/default -->
+</view>
