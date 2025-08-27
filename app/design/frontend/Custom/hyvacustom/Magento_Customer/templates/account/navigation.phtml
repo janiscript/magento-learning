@@ -1,0 +1,23 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+use Magento\Framework\View\Element\Html\Links;
+use Magento\Framework\Escaper;
+
+/** @var Links $block */
+/** @var Escaper $escaper */
+?>
+<div class="bg-lime-500">
+    <div class="content">
+        <nav class="account-nav" aria-label="<?= $escaper->escapeHtmlAttr(__('My Account')) ?>">
+            <ul class="nav items">
+                <?= $block->getChildHtml() ?>
+            </ul>
+        </nav>
+    </div>
+</div>

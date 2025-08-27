@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">my_account</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="label" xsi:type="string">My Account</item>
+                    <item name="link" xsi:type="string">/customer/account/</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="customer_account_dashboard_info" remove="true" />
+        <referenceBlock name="customer_account_dashboard_address" remove="true" />
+    </body>
+</page>
