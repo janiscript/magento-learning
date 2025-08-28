@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <body>
+        <referenceContainer name="product.info.main">
+            <!-- Attributes tieši zem cenas -->
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.info.attributes" template="Magento_Catalog::product/view/attributes.phtml" after="product.info.price"/>
+            
+            <!-- Quantity + Add to Cart zem attributes -->
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.addtocart" template="Magento_Catalog::product/view/addtocart.phtml" after="product.info.attributes"/>
+            
+            <!-- Upsell products zem Add to Cart -->
+            <block class="Magento\Catalog\Block\Product\ProductList\Upsell" name="product.info.upsell" template="Magento_Catalog::product/list/upsell.phtml" after="product.info.addtocart">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        
+        <!-- Related Products tradicionālā pozīcijā - lapas apakšā pilnā platumā -->
+        <referenceContainer name="content.bottom">
+            <block class="Magento\Catalog\Block\Product\ProductList\Crosssell" name="product.info.crosssell.bottom" template="Magento_Catalog::product/list/crosssell-as-related.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="crosssell.product.addto.bottom" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="crosssell.product.addto.compare.bottom" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+        </referenceContainer>
+        
+        <!-- Pārvietojam short description tieši zem attributes -->
+        <move element="product.info.overview" destination="product.info.main" after="product.info.attributes"/>
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true"/>
+    </body>
+</page> 
