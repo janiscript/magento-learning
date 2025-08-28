@@ -16,10 +16,11 @@
                 <referenceBlock name="customer_account_navigation">
                     <referenceBlock name="customer-account-navigation-delimiter-2" remove="true" />
 
-                    <block class="Magento\Framework\View\Element\Html\Link" name="customer-account-navigation-kreditlimiti-link">
+                    <block class="Magento\Framework\View\Element\Html\Link" name="customer-account-navigation-kreditlimiti-link" before="authorization-link-login">
                         <arguments>
                             <argument name="path" xsi:type="string">#</argument>
                             <argument name="label" xsi:type="string">Kredītlimiti</argument>
+                            <argument name="sortOrder" xsi:type="number">231</argument>
                         </arguments>
                     </block>
                 </referenceBlock>
