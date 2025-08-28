@@ -39,7 +39,7 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
 
 ?>
 <div
-    class="block block-dashboard-orders card mt-4"
+    class="block block-dashboard-orders mt-4"
     x-data="{ tabIndex: -1 }"
 >
     <div class="block-title order my-4 flex justify-between items-center">
@@ -63,50 +63,51 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
         <?php if ($count > 0): ?>
             <table
                 id="my-orders-table"
-                class="block-content w-full sm:table-fixed lg:table-auto"
+                class="w-full"
                 aria-labelledby="recentOrders"
+                style="border-collapse: collapse; border-spacing: 0; width: 100%;"
             >
-                <thead class="text-sm text-secondary">
+                <thead style="background-color: #160F3E;">
                     <tr>
-                        <th class="p-2 text-start">
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;">
                             <?= $escaper->escapeHtml(__('Order #')) ?>
                         </th>
-                        <th class="p-2 text-start hidden lg:table-cell">
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
                             <?= $escaper->escapeHtml(__('Date')) ?>
                         </th>
-                        <th class="p-2 text-start">
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;">
                             <?= $escaper->escapeHtml(__('Ship To')) ?>
                         </th>
-                        <th class="p-2 text-start hidden lg:table-cell">
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
                             <?= $escaper->escapeHtml(__('Order Total')) ?>
                         </th>
-                        <th class="p-2 text-start hidden lg:table-cell">
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
                             <?= $escaper->escapeHtml(__('Status')) ?>
                         </th>
-                        <th class="p-2 text-center">
+                        <th style="padding: 12px; text-align: center; color: white; font-size: 14px; font-weight: 500;">
                             <?= $escaper->escapeHtml(__('View')) ?>
                             <?php if ($this->helper(Reorder::class)->isAllow()): ?>
                                 / <?= $escaper->escapeHtml(__('Reorder')) ?>
                             <?php endif; ?>
                             <?php foreach ($extraActions as $extraActionTitle): ?>
-                                / <?= /** @noEscape  */ $extraActionTitle ?>
+                                / <?= /** @noEscape */ $extraActionTitle ?>
                             <?php endforeach; ?>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($orders as $order): ?>
-                        <tr class="align-top even:bg-container-darker">
+                        <tr style="border-bottom: 1px solid #e5e7eb;">
                             <th
                                 id="order<?= $escaper->escapeHtmlAttr($order->getRealOrderId()) ?>"
-                                class="p-2 text-start font-normal"
+                                style="padding: 12px; text-align: left; font-weight: normal;"
                             >
                                 <?= $escaper->escapeHtml($order->getRealOrderId()) ?>
                                 <p class="lg:hidden text-sm">
                                     <?= $escaper->escapeHtml($block->formatDate($order->getCreatedAt())) ?>
                                 </p>
                             </th>
-                            <td class="p-2 hidden lg:table-cell">
+                            <td style="padding: 12px;" class="hidden lg:table-cell">
                                 <?php
                                     $date = $order->getCreatedAt();
                                     $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
@@ -119,16 +120,16 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
                                     <?= $escaper->escapeHtml($block->formatDate($date, $formatLong)); ?>
                                 </span>
                             </td>
-                            <td class="p-2">
+                            <td style="padding: 12px;">
                                 <?= $order->getShippingAddress() ? $escaper->escapeHtml($order->getShippingAddress()->getName()) : '&nbsp;' ?>
                             </td>
-                            <td class="p-2 hidden lg:table-cell">
+                            <td style="padding: 12px;" class="hidden lg:table-cell">
                                 <?= /* @noEscape */ $order->formatPrice($order->getGrandTotal()) ?>
                             </td>
-                            <td class="p-2 hidden lg:table-cell">
+                            <td style="padding: 12px;" class="hidden lg:table-cell">
                                 <?= $escaper->escapeHtml($order->getStatusLabel()) ?>
                             </td>
-                            <td class="p-2">
+                            <td style="padding: 12px;">
                                 <?php // 'received' is an order status added in Magento_AsyncOrder in Adobe Commerce ?>
                                 <?php // The condition will always return 'true' in Magento Open Source ?>
                                 <?php if ($order->getStatus() !== 'received'): ?>

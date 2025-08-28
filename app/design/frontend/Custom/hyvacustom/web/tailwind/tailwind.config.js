@@ -21,7 +21,10 @@ module.exports = hyvaModules.mergeTailwindConfig({
         '2xl': '1536px' // => @media (min-width: 1536px) { ... }
       },
       fontFamily: {
-        sans: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"]
+        sans: ["Arial", "sans-serif"]
+      },
+      lineHeight: {
+        '13 ': '3.25rem'
       },
       colors: {
         primary: {

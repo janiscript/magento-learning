@@ -27,7 +27,7 @@ $currentPageUrl = $block->getUrl('', ['_current' => true, '_use_rewrite' => true
 ?>
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
-    <div class="container mx-auto px-4 py-3">
+    <div class="container mx-auto pr-4 py-3">
         <ol class="flex items-center space-x-2 text-sm">
             <?php foreach ($crumbs as $crumbName => $crumbInfo): ?>
                 <li class="item flex items-center <?= $escaper->escapeHtmlAttr($crumbName) ?>">
