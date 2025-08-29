@@ -26,6 +26,9 @@ module.exports = hyvaModules.mergeTailwindConfig({
       lineHeight: {
         '13 ': '3.25rem'
       },
+      fontFamily: {
+        sans: ["Raleway", "sans-serif"]
+      },
       colors: {
         primary: {
           lighter: colors.blue['300'],
