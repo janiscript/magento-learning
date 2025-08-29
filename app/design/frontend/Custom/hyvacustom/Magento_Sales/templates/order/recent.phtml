@@ -41,22 +41,17 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
 <div
     class="block block-dashboard-orders mt-4"
     x-data="{ tabIndex: -1 }"
+    style="border: 1px solid #D9D9D9; padding: 0px;"
 >
-    <div class="block-title order my-4 flex justify-between items-center">
+    <div class="block-title order my-4">
         <h2
             id="recentOrders"
             class="text-2xl block"
             @focus="tabIndex = 0;"
             @blur="tabIndex = -1"
             :tabindex="tabIndex"
-        ><?= $escaper->escapeHtml(__('Recent Orders')) ?></h2>
-        <?php if ($count > 0): ?>
-            <a
-                class="action view inline-block underline"
-                href="<?= $escaper->escapeUrl($block->getUrl('sales/order/history')) ?>"
-                aria-label="<?= $escaper->escapeHtmlAttr(__('View all orders')) ?>"
-            ><?= $escaper->escapeHtml(__('View All')) ?></a>
-        <?php endif; ?>
+            style="margin-left: 32px; margin-top: 24px; font-family: Arial; font-weight: 700; font-style: Bold; font-size: 20px; line-height: 32px; letter-spacing: 0%;"
+        >Pēdējie pasūtījumi</h2>
     </div>
     <div class="overflow-x-auto">
         <?= $block->getChildHtml() ?>
@@ -69,29 +64,23 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
             >
                 <thead style="background-color: #160F3E;">
                     <tr>
-                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;">
-                            <?= $escaper->escapeHtml(__('Order #')) ?>
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif; padding-left: 32px;">
+                            PASŪTĪJUMA NR.
                         </th>
-                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
-                            <?= $escaper->escapeHtml(__('Date')) ?>
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif;" class="hidden lg:table-cell">
+                            DATUMS
                         </th>
-                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;">
-                            <?= $escaper->escapeHtml(__('Ship To')) ?>
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif;">
+                            PASŪTĪTĀJS
                         </th>
-                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
-                            <?= $escaper->escapeHtml(__('Order Total')) ?>
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif;" class="hidden lg:table-cell">
+                            SUMMA
                         </th>
-                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 500;" class="hidden lg:table-cell">
-                            <?= $escaper->escapeHtml(__('Status')) ?>
+                        <th style="padding: 12px; text-align: left; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif;" class="hidden lg:table-cell">
+                            STATUSS
                         </th>
-                        <th style="padding: 12px; text-align: center; color: white; font-size: 14px; font-weight: 500;">
-                            <?= $escaper->escapeHtml(__('View')) ?>
-                            <?php if ($this->helper(Reorder::class)->isAllow()): ?>
-                                / <?= $escaper->escapeHtml(__('Reorder')) ?>
-                            <?php endif; ?>
-                            <?php foreach ($extraActions as $extraActionTitle): ?>
-                                / <?= /** @noEscape */ $extraActionTitle ?>
-                            <?php endforeach; ?>
+                        <th style="padding: 12px; text-align: center; color: white; font-size: 14px; font-weight: 700; font-family: Arial, sans-serif;">
+                            VIEW/REORDER
                         </th>
                     </tr>
                 </thead>
@@ -100,14 +89,14 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
                         <tr style="border-bottom: 1px solid #e5e7eb;">
                             <th
                                 id="order<?= $escaper->escapeHtmlAttr($order->getRealOrderId()) ?>"
-                                style="padding: 12px; text-align: left; font-weight: normal;"
+                                style="padding: 12px; text-align: left; font-weight: normal; color: #E53647; padding-left: 32px;"
                             >
                                 <?= $escaper->escapeHtml($order->getRealOrderId()) ?>
                                 <p class="lg:hidden text-sm">
                                     <?= $escaper->escapeHtml($block->formatDate($order->getCreatedAt())) ?>
                                 </p>
                             </th>
-                            <td style="padding: 12px;" class="hidden lg:table-cell">
+                            <td style="padding: 12px; font-family: Raleway, Arial, sans-serif;" class="hidden lg:table-cell">
                                 <?php
                                     $date = $order->getCreatedAt();
                                     $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
@@ -120,20 +109,31 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
                                     <?= $escaper->escapeHtml($block->formatDate($date, $formatLong)); ?>
                                 </span>
                             </td>
-                            <td style="padding: 12px;">
+                            <td style="padding: 12px; font-family: Raleway, Arial, sans-serif;">
                                 <?= $order->getShippingAddress() ? $escaper->escapeHtml($order->getShippingAddress()->getName()) : '&nbsp;' ?>
                             </td>
-                            <td style="padding: 12px;" class="hidden lg:table-cell">
-                                <?= /* @noEscape */ $order->formatPrice($order->getGrandTotal()) ?>
+                            <td style="padding: 12px; font-family: Raleway, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 24px; font-variant-numeric: lining-nums proportional-nums; text-align: left;" class="hidden lg:table-cell">
+                                € <?= /* @noEscape */ number_format($order->getGrandTotal(), 2, ',', ' ') ?>
                             </td>
-                            <td style="padding: 12px;" class="hidden lg:table-cell">
-                                <?= $escaper->escapeHtml($order->getStatusLabel()) ?>
+                            <td style="padding: 12px; padding-left: 0px;" class="hidden lg:table-cell">
+                                <div class="flex items-center">
+                                    <?php
+                                        $status = $order->getStatus();
+                                        if ($status === 'pending') {
+                                            echo '<div style="width: 8px; height: 8px; background-color: #FFC165; border-radius: 50%; margin-right: 8px;"></div>Gaida';
+                                        } elseif ($status === 'complete' || $status === 'processing') {
+                                            echo '<div style="width: 8px; height: 8px; background-color: #00A887; border-radius: 50%; margin-right: 8px;"></div>Apmaksāts';
+                                        } else {
+                                            echo '<div style="width: 8px; height: 8px; background-color: #E53647; border-radius: 50%; margin-right: 8px;"></div>Neapmaksāts';
+                                        }
+                                    ?>
+                                </div>
                             </td>
                             <td style="padding: 12px;">
                                 <?php // 'received' is an order status added in Magento_AsyncOrder in Adobe Commerce ?>
                                 <?php // The condition will always return 'true' in Magento Open Source ?>
                                 <?php if ($order->getStatus() !== 'received'): ?>
-                                    <div class="flex items-center justify-evenly">
+                                    <div class="flex items-center justify-end" style="padding-right: 32px; gap: 12px;">
                                         <a
                                             href="<?= $escaper->escapeUrl($block->getViewUrl($order)) ?>"
                                             class="inline-block text-sm underline text-secondary-darker"
@@ -182,6 +182,18 @@ if ($extraActionTitleBlocks = $block->getLayout()->getChildBlocks('order-list-ex
         <?php else: ?>
             <div class="message info empty">
                 <span><?= $escaper->escapeHtml(__('You have placed no orders.')) ?></span>
+            </div>
+        <?php endif; ?>
+        
+        <!-- View All Button below table -->
+        <?php if ($count > 0): ?>
+            <div class="mt-6 text-left">
+                <a
+                    class="action view inline-flex items-center justify-center text-white font-bold no-underline"
+                    href="<?= $escaper->escapeUrl($block->getUrl('sales/order/history')) ?>"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('View all orders')) ?>"
+                    style="width: 167px; height: 48px; background-color: #E53848; font-family: Arial; font-weight: 700; font-size: 14px; line-height: 24px; margin-left: 32px; margin-bottom: 24px;"
+                >SKATĪT VISU</a>
             </div>
         <?php endif; ?>
     </div>
